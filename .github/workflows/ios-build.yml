@@ -9,8 +9,68 @@ jobs:
     runs-on: macos-latest
 
     steps:
+      # 1️⃣ checkout the repo
       - uses: actions/checkout@v4
 
-      - name: Build
+      # 2️⃣ list the project
+      - name: List Xcode project
         run: |
-          xcodebuild -list
+          xcodebuild -project MyApp/MyApp.xcodeproj -list
+
+      # 3️⃣ create shared scheme if missing
+      - name: Create shared scheme
+        run: |
+          mkdir -p MyApp/MyApp.xcodeproj/xcshareddata/xcschemes
+           if [ ! -f MyApp/MyApp.xcodeproj/xcshareddata/xcschemes/MyApp.xcscheme ]; then
+            cat > MyApp/MyApp.xcodeproj/xcshareddata/xcschemes/MyApp.xcscheme <<'EOF'
+            <?xml version="1.0" encoding="UTF-8"?>
+            <Scheme
+              LastUpgradeVersion="1500"
+              version="1.7">
+              <BuildAction
+                parallelizeBuildables="YES"
+                buildImplicitDependencies="YES">
+                <BuildActionEntries>
+                  <BuildActionEntry
+                    buildForTesting="YES"
+                    buildForRunning="YES"
+                    buildForProfiling="YES"
+                    buildForArchiving="YES"
+                    buildForAnalyzing="YES">
+                    <BuildableReference
+                      BuildableIdentifier="primary"
+                      BlueprintIdentifier="PROJECT_TARGET_ID"
+                      BuildableName="MyApp.app"
+                      BlueprintName="MyApp"
+                      ReferencedContainer="container:MyApp.xcodeproj">
+                    </BuildableReference>
+                  </BuildActionEntry>
+                </BuildActionEntries>
+              </BuildAction>
+            </Scheme>
+            EOF
+           fi
+
+      # 4️⃣ archive the app
+      - name: Archive app
+        run: |
+          xcodebuild -project MyApp/MyApp.xcodeproj \
+                     -scheme MyApp \
+                     -configuration Release \
+                     -archivePath $PWD/build/MyApp.xcarchive archive
+
+      # 5️⃣ export .ipa
+      - name: Export .ipa
+        run: |
+          mkdir -p build/ipa
+          xcodebuild -exportArchive \
+                     -archivePath $PWD/build/MyApp.xcarchive \
+                     -exportPath $PWD/build/ipa \
+                     -exportOptionsPlist MyApp/exportOptions.plist
+
+      # 6️⃣ upload .ipa
+      - name: Upload .ipa
+        uses: actions/upload-artifact@v3
+        with:
+          name: MyApp-ipa
+          path: build/ipa
