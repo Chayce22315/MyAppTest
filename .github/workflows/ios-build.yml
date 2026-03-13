@@ -70,7 +70,7 @@ jobs:
 
       # 6️⃣ upload .ipa
       - name: Upload .ipa
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: MyApp-ipa
           path: build/ipa
