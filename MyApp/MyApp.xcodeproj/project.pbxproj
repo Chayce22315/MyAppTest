@@ -1,24 +1,63 @@
 // !$*UTF8*$!
 {
- archiveVersion = 1;
- classes = {};
- objectVersion = 56;
- objects = {
+  archiveVersion = 1;
+  classes = {};
+  objectVersion = 56;
+  objects = {
 
- 1D6058900D05DD3D006BFB54 = {
-  isa = PBXProject;
-  attributes = {
-   LastUpgradeCheck = 1300;
+    7E1FBEDDFDFE4C2184034AC1 = {
+      isa = PBXProject;
+      attributes = {
+        LastUpgradeCheck = 1300;
+      };
+      buildConfigurationList = 29A710A34EDF48F0AEF42DEA;
+      compatibilityVersion = "Xcode 16.0";
+      developmentRegion = en;
+      hasScannedForEncodings = 0;
+      knownRegions = (en);
+      mainGroup = 7E1FBEDDFDFE4C2184034AC1G;
+      targets = (88B48844F4674747A43D4046);
+    };
+
+    29A710A34EDF48F0AEF42DEA = {
+      isa = XCConfigurationList;
+      buildConfigurations = (5BF4591BFE704641B692ABE7, 7F21952CC9B04A1CB4FCEC7F);
+      defaultConfigurationIsVisible = 0;
+      defaultConfigurationName = Release;
+    };
+
+    5BF4591BFE704641B692ABE7 = {
+      isa = XCBuildConfiguration;
+      name = Debug;
+      buildSettings = {
+        PRODUCT_NAME = "MyApp";
+      };
+    };
+
+    7F21952CC9B04A1CB4FCEC7F = {
+      isa = XCBuildConfiguration;
+      name = Release;
+      buildSettings = {
+        PRODUCT_NAME = "MyApp";
+      };
+    };
+
+    88B48844F4674747A43D4046 = {
+      isa = PBXNativeTarget;
+      name = "MyApp";
+      buildConfigurationList = 29A710A34EDF48F0AEF42DEA;
+      buildPhases = ();
+      buildRules = ();
+      dependencies = ();
+      productName = "MyApp";
+      productType = "com.apple.product-type.application";
+    };
+
+    7E1FBEDDFDFE4C2184034AC1G = {
+      isa = PBXGroup;
+      children = ();
+      sourceTree = "<group>";
+    };
   };
-  compatibilityVersion = "Xcode 13.0";
-  developmentRegion = en;
-  hasScannedForEncodings = 0;
-  knownRegions = (en);
-  mainGroup = 1D60588D0D05DD3D006BFB54;
-  projectDirPath = "";
-  targets = ();
- };
-
- };
- rootObject = 1D6058900D05DD3D006BFB54;
+  rootObject = 7E1FBEDDFDFE4C2184034AC1;
 }
